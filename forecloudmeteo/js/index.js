@@ -7,7 +7,7 @@ let urlCoord = "http://api.openweathermap.org/data/2.5/forecast?";
 let id = "&appid=f9618f7331dc3735f2bbce10c9516ee0";
 
 //string per richiedere le weather icon 
-let icon = "http://openweathermap.org/img/w/";
+let icon = "https://openweathermap.org/img/w/";
 let png = ".png";
 
 //alla pressione di "INVIO" effettua la ricerca
