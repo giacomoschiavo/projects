@@ -1,0 +1,165 @@
+@font-face {
+    font-family: fixedsys;
+    src: url(FSEX300.ttf);
+}
+
+body {
+    background-image: linear-gradient(lightblue, blue);
+}
+
+#copyright{
+	position: absolute;
+	color: white;
+	font-family: fixedsys;
+	user-select: none;
+}
+
+canvas {
+	margin: -10;
+	padding: 0;
+    border: 1px solid black;
+}
+
+input{
+	font-family: fixedsys;
+	border: 1px solid black;
+	border-radius: 5px;
+	position: absolute;
+	visibility: hidden;
+	color: white;
+	box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.5), 0 8px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+button{
+	cursor:pointer;
+	position: absolute;
+	outline: none;
+	font-family: fixedsys;
+	visibility: hidden;
+}
+
+#play{
+    font-family: fixedsys;
+    border: 0;
+	border-radius: 16px;
+	background-color: white;
+	color: black;
+	box-shadow: 0 12px rgba(0, 0, 0, 0.4);
+}
+
+}
+
+#play:hover{
+	background-color: rgba(0, 0, 0, 1);
+	color: white;
+}
+
+#play:active{
+	box-shadow: 0 7px rgba(0, 0, 0, 0.7);
+	transform: translateY(5px);
+}
+
+#options{
+    font-family: fixedsys;
+    border: 0;
+	border-radius: 16px;
+	background-color: white;
+	color: black;
+	box-shadow: 0 12px rgba(0, 0, 0, 0.4);
+}
+
+#options:hover{
+	background-color: rgba(0, 0, 0, 1);
+	color: white;
+}
+
+#options:active{
+	box-shadow: 0 7px rgba(0, 0, 0, 0.7);
+	transform: translateY(5px);
+}
+
+#go{
+	background-color: white;
+	border: 0;
+	border-radius: 50px;
+	box-shadow: 0 9px #444;
+}
+
+#go:hover{
+	background-color: #555;
+	color: white;
+}
+
+#go:active{
+	box-shadow: 0 5px #444;
+  	transform: translateY(4px);
+}
+
+.changeButton{
+	border: 0;
+	border-radius: 16px;
+	font-size: 32px;
+	text-decoration:none;
+	color: white;
+	background-color: rgb(55, 85, 125);
+	box-shadow: 0 12px rgb(45, 75, 105);
+}
+
+.changeButton:hover{
+	color: white;
+}
+
+.changeButton:active{
+	box-shadow: 0 7px rgb(45, 75, 105);
+	transform: translateY(5px);
+}
+
+#again{
+	border: 0;
+	font-family: fixedsys;
+	visibility: hidden;
+	border-radius: 16px;
+	font-size: 80px;
+	background-color: white;
+	box-shadow: 0 12px rgb(0, 0, 0, 0.7);
+}
+
+
+#again:active{
+	box-shadow: 0 7px rgb(0, 0, 0, 0.8);
+	transform: translateY(5px);
+}
+
+.mobile{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.mobile div{
+  position: relative;
+  z-index: 20;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  text-align: center;
+  padding: 20px;
+  font-size: 50px;
+  background: white;
+  border-radius: 50px;
+}
+
+@media only screen and (max-width: 1000px){
+  .mobile{
+    display: block;
+  }
+
+  #play{
+    display: none !important;
+  }
+}
