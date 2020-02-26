@@ -1,0 +1,30 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="icon" href="favicon.png" type="image/gif" sizes="16x16">
+    <title>ForeCloud Meteo</title>
+</head>
+<body>
+	<button id="searchPosition" onclick="getInfoFromCoord()">Use your position!</button>
+	<p class="error">Geolocation unavailable</p>
+	<div id="first_half_body">
+		<div id="search_bar_container">
+			<label for="city_input">Insert your city:</label>
+			<input type="text" id="city_input" spellcheck="false" placeholder="Rome">
+			<button id="searchCity" onclick="getInfo()">Search</button>
+			<p class="error">City not found!</p>
+		</div>
+		<h1 align="center">ForeCloud Meteo</h1>
+	</div>
+	<div id="second_half_body">
+		<!-- Qui verrà generato da index.js(updateInfo) -->
+	</div>	
+	<div id="footer">
+		<p>Email me at: <b>giacomo.schiavo12@gmail.com</b></p>
+		<a href="https://www.instagram.com/giacomo.schiavo/?hl=it" target="_blank"><img src="img/instagram_logo.png" class="icon" id="instagram" alt="instagram_logo"></a>
+		<a href="https://www.facebook.com/giacomoschiavo1209" target="_blank"><img src="img/facebook_logo.png" class="icon" id="facebook" alt="facebook_logo"></a>
+	</div>
+    <script src="js/index.js"></script>
+</body>
+</html>
