@@ -5,6 +5,7 @@ let resultP;
 let canvas;
 let input;
 let ready = false;
+let classes = [];
 
 function setup() {
   input = {
@@ -32,9 +33,9 @@ function goClassify() {
       console.error(error);
     } else {
       resultP.html(result.label);
-      select("#test1").style("width", result.confidences[0].toFixed(3)*100 + "%");
-      select("#test2").style("width", result.confidences[1].toFixed(3)*100 + "%");
-      select("#test3").style("width", result.confidences[2].toFixed(3)*100 + "%");
+      // select("#test1").style("width", result.confidences[0].toFixed(3) * 100 + "%");
+      // select("#test2").style("width", result.confidences[1].toFixed(3) * 100 + "%");
+      // select("#test3").style("width", result.confidences[2].toFixed(3) * 100 + "%");
       // console.log(result);
       goClassify();
     }
@@ -44,7 +45,7 @@ function goClassify() {
 function draw() {
   image(video, 0, 0, width, height);
 
-  if(knn.getNumLabels() == 3 && !ready) {
+  if (knn.getNumLabels() >= 2 && !ready) {
     goClassify();
     ready = true;
   }
@@ -55,14 +56,40 @@ function windowResized() {
   resizeCanvas(input.w, input.h);
 }
 
-function test1add() {
-  knn.addExample(features.infer(video), "test1");
+function addClass(name, color="yellow") {
+  if (exist(name) || classes.length > 4) return;
+
+  let classDiv = createDiv();
+  classDiv.class("class");
+
+  let loadDiv = createDiv();
+  loadDiv.id(name);
+  loadDiv.style("background-color", color);
+
+  let trainButton = createButton("Train \"" + name + "\"");
+  trainButton.class("trainButton");
+  trainButton.elt.addEventListener("mousedown", () => {
+    console.log(1)
+    knn.addExample(features.infer(video), name);
+  });
+
+  classDiv.child(loadDiv);
+  classDiv.child(trainButton);
+
+  classDiv.parent(select("#training"));
+
+  classes.push({
+    label: name,
+    dom: classDiv
+  });
 }
 
-function test2add() {
-  knn.addExample(features.infer(video), "test2");
+function exist(name) {
+  for (let i = 0; i < classes.length; i++)
+    if (classes[i].label == name) return true;
+  return false;
 }
 
-function test3add() {
-  knn.addExample(features.infer(video), "test3");
+function onAddClass() {
+  addClass(select("#inputClassName").value());
 }

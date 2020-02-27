@@ -51,11 +51,11 @@ canvas {
   border-radius: 10px;
 }
 
-.test {
+.class {
   background-color: #222;
 }
 
-.test > div {
+.class > div {
   transition: .5s;
   height: 24px;
   width: 1%;
