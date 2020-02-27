@@ -1,12 +1,14 @@
 let video;
 let features;
 let knn;
-let resultP;
 let canvas;
 let input;
 let ready = false;
 let classes = [];
-let e;
+let resultP;
+
+const CLASS_LIMIT = 8;
+const INITIAL_LABEL = "I need data🤩"
 
 function setup() {
   input = {
@@ -14,14 +16,16 @@ function setup() {
     h: select("#input").width
   };
   canvas = createCanvas(input.w, input.h);
-  canvas.parent("input");
   video = createCapture(VIDEO, cameraLoaded);
   video.size(input.w, input.h);
   video.hide();
   features = ml5.featureExtractor("MobileNet", video, modelReady);
   knn = ml5.KNNClassifier();
-  resultP = select("#result").html("need data");
-  addClass("ciao", "blue");
+  resultP = createP(INITIAL_LABEL);
+  resultP.id("result");
+
+  canvas.parent("input");
+  resultP.parent("input");
 }
 
 function modelReady() {
@@ -67,7 +71,7 @@ function windowResized() {
 }
 
 function addClass(name, color = "yellow") {
-  if (exist(name) || classes.length > 4 || name == "") return;
+  if (exist(name) || classes.length >= CLASS_LIMIT || name == "") return;
 
   let classDiv = createDiv();
   classDiv.class("class");
@@ -77,8 +81,9 @@ function addClass(name, color = "yellow") {
   loadDiv.class("confidence");
   loadDiv.style("background-color", color);
 
-  let trainButton = createButton("Train \"" + name + "\"");
+  let trainButton = createButton("<span>TRAIN \"" + name + "\"</span>");
   trainButton.class("trainButton");
+  trainButton.style("background-color", color);
   trainButton.elt.addEventListener("mousedown", (ev) => {
     // e = ev;
     let children = ev.path[1].children;
@@ -97,7 +102,7 @@ function addClass(name, color = "yellow") {
   classDiv.child(imgDiv);
   classDiv.child(trainButton);
 
-  classDiv.parent(select("#training"));
+  classDiv.parent(select("#class-cont"));
 
   classes.push({
     label: name,
