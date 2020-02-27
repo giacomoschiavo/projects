@@ -1,6 +1,9 @@
-<!DOCTYPE html><html lang="en"><head>
-  <script src="ml5.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+  <script src="ml5.min.js"></script>
   <script src="p5.js"></script>
   <script src="p5.sound.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -9,7 +12,30 @@
 </head>
 
 <body>
+  <div id="container">
+    <div id="input" class="tile">
+    </div>
+    <div id="training" class="tile">
+      <div class="test" onclick="test1add()">
+        <div id="test1"></div>
+        <button class="trainButton">Train purple</button>
+      </div>
+      <div class="test" onclick="test2add()">
+        <div id="test2"></div>
+        <button class="trainButton">Train orange</button>
+      </div>
+      <div class="test" onclick="test3add()">
+        <div id="test3"></div>
+        <button class="trainButton">Train green</button>
+      </div>
+    </div>
+    <div id="resultDiv" class="tile">
+      <p id="result">test1</p>
+    </div>
+  </div>
+
   <script src="sketch.js"></script>
 
+</body>
 
-</body></html>
+</html>

@@ -1,7 +1,74 @@
 html, body {
   margin: 0;
   padding: 0;
+  background-color: #eee;
 }
+
 canvas {
   display: block;
+  max-width: 100%;
+  width: 100%;
+  transform: scaleX(-1);
+}
+
+#container {
+  display: flex;
+  width: 80%;
+  margin: 20px auto;
+  background-color: #aaa;
+}
+
+.tile {
+  flex: 1;
+  background-color: #123;
+  min-width: 25%;
+  min-height: 500px;
+}
+
+#input {
+}
+
+#training {
+  display: flex;
+  flex-direction: column;
+}
+
+#result {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+
+.confidence {
+  color: white;
+}
+
+.trainButton {
+  margin: 5px auto;
+  width: 50%;
+  padding: 10px;
+  border: 0;
+  border-radius: 10px;
+}
+
+.test {
+  background-color: #222;
+}
+
+.test > div {
+  transition: .5s;
+  height: 24px;
+  width: 1%;
+}
+
+#test1 {
+  background-color: #0a0;
+}
+
+#test2 {
+  background-color: #a00;
+}
+
+#test3 {
+  background-color: #00a;
 }
