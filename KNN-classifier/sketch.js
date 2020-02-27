@@ -15,12 +15,16 @@ function setup() {
     w: select("#input").width,
     h: select("#input").width
   };
+
   canvas = createCanvas(input.w, input.h);
-  video = createCapture(VIDEO, cameraLoaded);
+
+  video = createCapture(VIDEO);
   video.size(input.w, input.h);
   video.hide();
+
   features = ml5.featureExtractor("MobileNet", video, modelReady);
   knn = ml5.KNNClassifier();
+
   resultP = createP(INITIAL_LABEL);
   resultP.id("result");
 
@@ -30,10 +34,6 @@ function setup() {
 
 function modelReady() {
   console.log("Model is ready");
-}
-
-function cameraLoaded() {
-  console.log("Camera is ready");
 }
 
 function goClassify() {
@@ -65,11 +65,6 @@ function draw() {
   }
 }
 
-function windowResized() {
-  video.size(input.w, input.h);
-  resizeCanvas(input.w, input.h);
-}
-
 function addClass(name, color = "yellow") {
   if (exist(name) || classes.length >= CLASS_LIMIT || name == "") return;
 
@@ -84,14 +79,15 @@ function addClass(name, color = "yellow") {
   let trainButton = createButton("<span>TRAIN \"" + name + "\"</span>");
   trainButton.class("trainButton");
   trainButton.style("background-color", color);
+
   trainButton.elt.addEventListener("mousedown", (ev) => {
-    // e = ev;
     let children = ev.path[1].children;
     for(let i = 0; i < children.length; i++) {
       if(children[i].className == "snapshots") {
         children[i].prepend(capture());
       }
     }
+
     knn.addExample(features.infer(video), name);
   });
 
@@ -119,7 +115,7 @@ function exist(name) {
 function onAddClass() {
   addClass(select("#inputClassName").value(), select("#colorClass").value());
   select("#inputClassName").value("");
-  select("#colorClass").value("#666666");
+  select("#colorClass").value("#ff0000");
 }
 
 function capture() {
