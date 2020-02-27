@@ -9,6 +9,7 @@ canvas {
   max-width: 100%;
   width: 100%;
   transform: scaleX(-1);
+  filter: saturate(1.3) brightness(0.9);
 }
 
 #container {
@@ -26,6 +27,7 @@ canvas {
 }
 
 #input {
+
 }
 
 #training {
@@ -55,20 +57,25 @@ canvas {
   background-color: #222;
 }
 
-.class > div {
+.class > .confidence {
   transition: .5s;
   height: 24px;
   width: 1%;
 }
 
-#test1 {
-  background-color: #0a0;
+.snapshots {
+  display: flex;
+  flex-direction: row;
+  overflow-y: scroll;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  max-height: 100px;
+  height: 50px;
 }
 
-#test2 {
-  background-color: #a00;
-}
-
-#test3 {
-  background-color: #00a;
+.snapshots img {
+  flex: 1;
+  margin: 2px;
+  max-width: 20%;
+  border-radius: 1px;
 }
