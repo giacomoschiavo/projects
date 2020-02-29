@@ -8,12 +8,15 @@ let classes = [];
 let resultP;
 
 const CLASS_LIMIT = 8;
-const INITIAL_LABEL = "I need data🤩"
+const INITIAL_LABEL = "I need data🤩";
+const CLASSNAME_BUTTON = "trainButton";
+const CAMERA_CONTAINER_ID = "input";
+const SNAPSHOTS_POSITION = 1;
 
 function setup() {
   input = {
-    w: select("#input").width,
-    h: select("#input").width
+    w: select("#" + CAMERA_CONTAINER_ID).width,
+    h: select("#" + CAMERA_CONTAINER_ID).width
   };
 
   canvas = createCanvas(input.w, input.h);
@@ -28,8 +31,8 @@ function setup() {
   resultP = createP(INITIAL_LABEL);
   resultP.id("result");
 
-  canvas.parent("input");
-  resultP.parent("input");
+  canvas.parent(CAMERA_CONTAINER_ID);
+  resultP.parent(CAMERA_CONTAINER_ID);
 }
 
 function modelReady() {
@@ -77,17 +80,12 @@ function addClass(name, color = "yellow") {
   loadDiv.style("background-color", color);
 
   let trainButton = createButton("<span>TRAIN \"" + name + "\"</span>");
-  trainButton.class("trainButton");
+  trainButton.class(CLASSNAME_BUTTON);
   trainButton.style("background-color", color);
 
-  trainButton.elt.addEventListener("mousedown", (ev) => {
-    let children = ev.path[1].children;
-    for(let i = 0; i < children.length; i++) {
-      if(children[i].className == "snapshots") {
-        children[i].prepend(capture());
-      }
-    }
-
+  trainButton.elt.addEventListener("mousedown", (e) => {
+    let snapCont = e.path[2].childNodes[SNAPSHOTS_POSITION];
+    snapCont.prepend(capture());
     knn.addExample(features.infer(video), name);
   });
 
