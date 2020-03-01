@@ -1,18 +1,16 @@
 let x_vals = [];
 let y_vals = [];
 
-let a, b, c;
+let coeffs = [];
 
-const learningRate = 0.1;
+const learningRate = 0.3;
 const optimizer = tf.train.adamax(learningRate);
 
 let dragged = false;
 
 function setup() {
-  createCanvas(400, 400);
-  a = tf.variable(tf.scalar(random(-1, 1)));
-  b = tf.variable(tf.scalar(random(-1, 1)));
-  c = tf.variable(tf.scalar(random(-1, 1)));
+  createCanvas(400, 400).id("canvas");
+  coeffs.push(tf.variable(tf.scalar(random(-1, 1))));
 }
 
 function mouseDragged() {
@@ -23,10 +21,20 @@ function mouseReleased() {
   dragged = false;
 }
 
+function mousePressed() {
+  let x = map(mouseX, 0, width, -1, 1);
+  let y = map(mouseY, 0, height, 1, -1);
+  x_vals.push(x);
+  y_vals.push(y);
+}
+
 function predict(input) {
   const xs = tf.tensor1d(input);
-  // const output = xs.mul(m).add(b);
-  const output = xs.square().mul(a).add(xs.mul(b)).add(c);
+  // ax^n + bx^n-1 + cx^n-2 + ....
+  let output = xs.pow(coeffs.length - 1).mul(coeffs[0]);
+  for (let i = 1; i < coeffs.length; i++) {
+    output = output.add(xs.pow(coeffs.length - 1 - i).mul(coeffs[i]));
+  }
   return output;
 }
 
@@ -36,10 +44,7 @@ function loss(pred, labels) {
 
 function draw() {
   if (dragged) {
-    let x = map(mouseX, 0, width, -1, 1);
-    let y = map(mouseY, 0, height, 1, -1);
-    x_vals.push(x);
-    y_vals.push(y);
+    mousePressed();
   } else {
     tf.tidy(() => {
       if (x_vals.length > 0) {
@@ -49,20 +54,14 @@ function draw() {
     });
   }
 
-
-
   background(0);
-
   stroke(255);
   strokeWeight(4);
-
   for (let i = 0; i < x_vals.length; i++) {
     let x = map(x_vals[i], -1, 1, 0, width);
     let y = map(y_vals[i], -1, 1, height, 0);
-
     point(x, y);
   }
-
 
   const curveX = [];
   for (let x = -1; x <= 1; x += 0.005) {
@@ -85,6 +84,4 @@ function draw() {
   }
 
   endShape();
-
-
 }
