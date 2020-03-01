@@ -280,4 +280,8 @@ canvas {
   .trainButton {
     margin-top: 10px;
   }
+
+  .snapshots img {
+    display: none;
+  }
 }
