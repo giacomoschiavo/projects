@@ -14,6 +14,7 @@ const CAMERA_CONTAINER_ID = "input";
 const SNAPSHOTS_POSITION = 1;
 
 function setup() {
+
   input = {
     w: select("#" + CAMERA_CONTAINER_ID).width,
     h: select("#" + CAMERA_CONTAINER_ID).width
@@ -22,6 +23,7 @@ function setup() {
   canvas = createCanvas(input.w, input.h);
 
   video = createCapture(VIDEO);
+
   video.size(input.w, input.h);
   video.hide();
 
@@ -85,7 +87,8 @@ function addClass(name, color = "yellow") {
 
   trainButton.elt.addEventListener("mousedown", (e) => {
     let snapCont = e.path[2].childNodes[SNAPSHOTS_POSITION];
-    snapCont.prepend(capture());
+    let img = capture();
+    snapCont.prepend(img);
     knn.addExample(features.infer(video), name);
   });
 
