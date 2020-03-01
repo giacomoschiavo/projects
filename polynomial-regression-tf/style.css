@@ -7,3 +7,7 @@ html, body {
   display: block;
   margin: 20px;
 }
+
+input, p {
+  margin: 10px;
+}
