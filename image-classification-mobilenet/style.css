@@ -1,7 +1,53 @@
 html, body {
   margin: 0;
   padding: 0;
+  background-color: black;
+  color: white;
+  text-align: center;
 }
+
+#canvas-cont {
+  width: 40%;
+  margin: 20px auto;
+}
+
 canvas {
+  max-width: 100%;
+  max-height: 100%;
   display: block;
+  border-radius: 10px;
+  transform: scaleX(-1);
+}
+
+#labels {
+  font-size: 30px;
+  font-family: sans-serif;
+  text-shadow: 0 1px #444;
+  word-wrap: break-word;
+  margin: 5px 20px;
+  background-color: #111;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #222;
+  color: #aaa;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+footer a {
+  color: white;
+}
+
+@media (max-width: 800px) {
+  #canvas-cont {
+    width: 90%;
+    margin: 20px auto;
+  }
 }

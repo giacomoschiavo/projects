@@ -3,6 +3,7 @@ let mobilenet;
 let video;
 let label = "";
 
+let labelP;
 
 function modelReady() {
   console.log("Model is ready");
@@ -20,18 +21,28 @@ function gotResults(error, result) {
 }
 
 function setup() {
-  createCanvas(540, 450);
-  video = createCapture(VIDEO);
+  let canvas = createCanvas(540, 450);
+  canvas.parent("canvas-cont");
+  video = createCapture(VIDEO, cameraLoaded);
   video.hide();
   background(0);
   mobilenet = ml5.imageClassifier("MobileNet", video, modelReady);
+  labelP = select("#labels");
+  resizeCamera();
+}
 
+function cameraLoaded() {
+  resizeCamera();
 }
 
 function draw() {
   background(0);
-  image(video, 0, 0, width, height - 35);
-  fill(255);
-  textSize(25);
-  text(label, 10, height - 10);
+  image(video, 0, 0, width, height);
+  labelP.html(label);
+}
+
+function resizeCamera() {
+  let aspectRatio = video.width / video.height;
+  let cont = select("#canvas-cont");
+  resizeCanvas(cont.elt.clientWidth, cont.elt.clientWidth / aspectRatio);
 }
