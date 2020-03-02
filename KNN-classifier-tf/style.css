@@ -2,7 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #111;
+  background-color: white;
 }
 
 body *{
@@ -12,7 +12,6 @@ body *{
 canvas {
   display: block;
   max-width: 100%;
-  width: 100%;
   position: relative;
   transform: scaleX(-1) translateY(-60%);
   border-radius: 20px;
@@ -25,10 +24,6 @@ canvas {
   min-height: 100%;
 }
 
-.tile {
-  flex: 1;
-}
-
 #input {
   position: relative;
   margin: 20px;
@@ -37,23 +32,23 @@ canvas {
 
 #result {
   position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
   color: #222;
   font-size: 20px;
   text-align: center;
   padding: 20px;
   background-color: #ddd;
-  bottom: 0;
-  right: 0;
-  left: 0;
   margin: 0;
   letter-spacing: 1px;
   border-radius: 20px;
-  box-shadow: 0 8px #aaa;
+  box-shadow: 0 8px #888;
 }
 
 
 #training {
-  flex: 3;
+  flex: 2;
 }
 
 #class-cont {
@@ -137,6 +132,7 @@ canvas {
 #inputClassName {
   padding: 5px 10px;
   border-radius: 10px;
+  background-color: #fafafa;
   border: 0;
   margin: 0 10px;
   font-size: 20px;
@@ -153,10 +149,11 @@ canvas {
   width: 35px;
   height: 30px;
   transform: translateY(8px);
-  background-color: white;
+  background-color: #fafafa;
   border: 0;
   padding: 5px;
   box-shadow: 0 5px #ccc;
+  cursor: pointer;
 }
 
 #colorClass:active {
@@ -166,14 +163,15 @@ canvas {
 
 #inputClass button {
   border-radius: 10px;
-  background-color: #222;
+  background-color: #555;
   color: white;
   font-size: 20px;
-  margin: 0 20px;
+  margin: 15px 20px;
   border: 0;
   padding: 10px 20px;
-  box-shadow: 0 10px black;
+  box-shadow: 0 10px #444;
   outline: none;
+  cursor: pointer;
 }
 
 /* width */
@@ -205,9 +203,8 @@ canvas {
 
   canvas {
     transform: scaleX(-1);
-    max-width: 200px;
-    max-height: 200px;
-    margin: auto;
+    max-height: 180px;
+    margin: 20px auto;
   }
 
   .snapshots {
@@ -223,15 +220,15 @@ canvas {
     top: 0;
     left: 0;
     right: 0;
-    background-color: #111;
-    padding: 10px;
-    margin: 0;
+    margin: auto;
+    width: 50%;
     z-index: 99;
+    max-height: 185px;
   }
 
   #result {
     position: fixed;
-    padding: 10px;
+    padding: 15px 10px;
     border-radius: 20px 20px 0 0;
     box-shadow: 0 -3px  #aaa;
     z-index: 99;
@@ -241,23 +238,22 @@ canvas {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     width: auto;
     margin: 10px;
   }
 
   #inputClassName {
     padding: 5px 10px;
-    margin: 0 10px;
+    margin: 10px;
     font-size: 15px;
   }
 
   #inputClass button {
     border-radius: 10px;
-    background-color: #222;
     margin: 10px 20px;
     margin-top: 20px;
-    padding: 5px 10px;
+    padding: 5px 18px;
     z-index: 0;
   }
 
@@ -268,12 +264,13 @@ canvas {
     padding: 5px;
     margin-top: 10px;
     box-shadow: 0 5px #ccc;
+    border-radius: 10px;
   }
 
   #training {
     flex: 10;
     overflow-y: scroll;
-    margin-top: 70vw;
+    margin-top: 48vw;
     margin-bottom: 50vw;
   }
 

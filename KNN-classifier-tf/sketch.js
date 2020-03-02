@@ -15,16 +15,14 @@ const SNAPSHOTS_POSITION = 1;
 
 function setup() {
 
-  input = {
-    w: select("#" + CAMERA_CONTAINER_ID).width,
-    h: select("#" + CAMERA_CONTAINER_ID).width
-  };
+  // input = {
+  //   w: select("#" + CAMERA_CONTAINER_ID).width,
+  //   h: select("#" + CAMERA_CONTAINER_ID).width
+  // };
+  input = select("#" + CAMERA_CONTAINER_ID);
 
-  canvas = createCanvas(input.w, input.h);
-
-  video = createCapture(VIDEO);
-
-  video.size(input.w, input.h);
+  video = createCapture(VIDEO, loadCanvas);
+  // video.size(input.w, input.h);
   video.hide();
 
   features = ml5.featureExtractor("MobileNet", video, modelReady);
@@ -33,8 +31,16 @@ function setup() {
   resultP = createP(INITIAL_LABEL);
   resultP.id("result");
 
-  canvas.parent(CAMERA_CONTAINER_ID);
   resultP.parent(CAMERA_CONTAINER_ID);
+}
+
+function loadCanvas() {
+  // let newHeight = video.width;
+  // video.width = video.height;
+  // video.height = video.width;
+  canvas = createCanvas(video.width, video.height);
+  canvas.parent(CAMERA_CONTAINER_ID);
+  resizeCamera();
 }
 
 function modelReady() {
@@ -62,7 +68,7 @@ function updateBar(result) {
 }
 
 function draw() {
-  image(video, -80, -0, width + 80, height + 0);
+  image(video, 0, 0, width, height);
 
   if (knn.getNumLabels() >= 2 && !ready) {
     goClassify();
@@ -105,6 +111,7 @@ function addClass(name, color = "yellow") {
     label: name,
     dom: classDiv
   });
+
 }
 
 function exist(name) {
@@ -123,4 +130,14 @@ function capture() {
   let img = new Image();
   img.src = canvas.elt.toDataURL();
   return img;
+}
+
+function resizeCamera() {
+  var aspectRatio = video.width / video.height;
+  console.log(input.width / aspectRatio)
+  resizeCanvas(input.elt.clientWidth, input.elt.clientWidth / aspectRatio);
+}
+
+function windowResized() {
+  resizeCamera();
 }
