@@ -1,13 +1,74 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #aaa;
-}
-#canvas {
-  display: block;
-  margin: 20px;
+  background-color: black;
 }
 
-input, p {
-  margin: 10px;
+#cont {
+  width: 60%;
+  margin: auto;
+  text-align: center;
+}
+
+#canvas {
+  margin: 20px;
+  border: 1px solid white;
+  margin: 20px auto;
+}
+
+#interaction {
+  color: white;
+  font-family: "Questrial", sans-serif;
+  letter-spacing: 1px;
+  width: 80%;
+  margin: 20px auto;
+}
+
+#interaction label {
+  background-color: white;
+  color: #444;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px #999;
+}
+
+.slider {
+  margin: 20px 10px;
+  -webkit-appearance: none;
+  width: 50%;
+  height: 5px;
+  background: #fff;
+  outline: none;
+  border-radius: 10px;
+  -webkit-transition: .2s;
+  transition: opacity .2s;box-shadow: 0 2.5px #666;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #999;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#reset {
+  transition: .1s;
+  padding: 10px 20px;
+  border: 0;
+  background-color: #eee;
+  color: #222;
+  border-radius: 20px;
+  font-family: "Questrial", sans-serif;
+  box-shadow: 0 6px #aaa;
+  outline: none;
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+#reset:active {
+  transform: translateY(5px);
+  box-shadow: 0 1px #aaa;
 }

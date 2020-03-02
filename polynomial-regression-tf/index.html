@@ -6,11 +6,23 @@
   <script src="p5.js"></script>
   <script src="tf.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body>
-
+<body id="body">
+  <div id="cont">
+    <div id="canvas-cont"></div>
+    <div id="interaction">
+      <label id="coeffP" for="coeffSlider">Order: 1</label>
+      <input id="coeffSlider" class="slider" type="range" min=1 max=20 step=1 value=1 onclick="updateCoeffs()">
+      <br>
+      <label id="learnP" for="coeffSlider">Learning rate: 0.1</label>
+      <input id="learnSlider" class="slider" type="range" min=0.01 max=0.9 step=0.01 value=0.1 onclick="updateLearningRate()">
+      <br>
+      <button id="reset" type="button" onclick="reset()">Reset</button>
+    </div>
+  </div>
 
   <script src="sketch.js"></script>
 </body>
