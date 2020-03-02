@@ -1,10 +1,12 @@
 # projects
 list of all my projects🛠
 
-* [KNN Classifier](https://giacomoschiavo.github.io/projects/KNN-classifier/)
+* [Forecloud Meteo☔](https://giacomoschiavo.github.io/projects/forecloudmeteo/)
 
-* [Battle of Heroes](https://giacomoschiavo.github.io/projects/battleofheroes/)
+* [Battle of Heroes👾](https://giacomoschiavo.github.io/projects/battleofheroes/)
 
-* [Forecloud Meteo](https://giacomoschiavo.github.io/projects/forecloudmeteo/)
+* [Image classification with Mobilenet😺](https://giacomoschiavo.github.io/projects/image-classification-mobilenet/)
 
-* [Image classification with Mobilenet](https://giacomoschiavo.github.io/projects/image-classification-with-mobilenet/)
+* [KNN Classifier👦](https://giacomoschiavo.github.io/projects/KNN-classifier-tf/)
+
+* [Polynomial Regression📈](https://giacomoschiavo.github.io/projects/polynomial-regression-tf/)
