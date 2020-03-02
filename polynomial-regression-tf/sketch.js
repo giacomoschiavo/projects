@@ -18,7 +18,8 @@ let dragging = false;
 const PARENT_INTERACTION_ID = "interaction";
 
 function setup() {
-  canvas = createCanvas(400, 400);
+  let canvasCont = select("#canvas-cont");
+  canvas = createCanvas(canvasCont.width, canvasCont.width);
   canvas.parent("canvas-cont");
   canvas.id("canvas");
 
@@ -56,9 +57,7 @@ function updateCoeffs() {
     }
   } else {
     let differ = coeffs.length - numCoeffs;
-    for (let i = 0; i < differ; i++) {
-      coeffs.pop();
-    }
+    for (let i = 0; i < differ; i++) coeffs.pop();
   }
   coeffP.html("Order: " + coeffs.length);
 }
@@ -148,7 +147,7 @@ function drawFunc() {
 
 function drawGrid() {
   let div = 16;
-  for(let i = width / div; i < width; i+= width / div) {
+  for (let i = width / div; i < width; i += width / div) {
     strokeWeight(i == width / 2 ? 3 : 1);
     stroke("rgba(255, 255, 255, 0.4)");
     line(i, 0, i, height);

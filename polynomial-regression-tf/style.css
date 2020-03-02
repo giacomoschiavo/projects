@@ -5,15 +5,20 @@ html, body {
 }
 
 #cont {
-  width: 60%;
   margin: auto;
   text-align: center;
+}
+
+#canvas-cont {
+  margin: 10px auto;
+  max-width: 30%;
 }
 
 #canvas {
   margin: 20px;
   border: 1px solid white;
   margin: 20px auto;
+  max-width: 100%;
 }
 
 #interaction {
@@ -71,4 +76,36 @@ html, body {
 #reset:active {
   transform: translateY(5px);
   box-shadow: 0 1px #aaa;
+}
+
+@media (max-width: 1200px) {
+  #canvas-cont {
+    max-width: 40%;
+  }
+
+  #interaction {
+    width: 80%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  #canvas-cont {
+    max-width: 90%;
+  }
+
+  #interaction {
+    width: 80%;
+  }
+
+  .user-input {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .user-input *{
+    width: 80%;
+    margin: 10px auto;
+  }
+
 }
