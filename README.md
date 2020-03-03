@@ -7,6 +7,6 @@ List of all my projects🛠
 
 * [Image classification with Mobilenet😺](https://giacomoschiavo.github.io/projects/image-classification-mobilenet/)
 
-* [KNN Classifier👦](https://giacomoschiavo.github.io/projects/KNN-classifier-tf/)
+* [KNN Classifier👦](https://giacomoschiavo.github.io/projects/knn-classifier-tf/)
 
 * [Polynomial Regression📈](https://giacomoschiavo.github.io/projects/polynomial-regression-tf/)
