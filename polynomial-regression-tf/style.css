@@ -78,6 +78,19 @@ html, body {
   box-shadow: 0 1px #aaa;
 }
 
+footer {
+  padding: 10px;
+  background-color: #222;
+  color: #aaa;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+footer a {
+  color: white;
+}
+
+
 @media (max-width: 1200px) {
   #canvas-cont {
     max-width: 40%;

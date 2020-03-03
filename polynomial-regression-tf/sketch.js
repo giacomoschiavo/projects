@@ -19,7 +19,7 @@ const PARENT_INTERACTION_ID = "interaction";
 
 function setup() {
   let canvasCont = select("#canvas-cont");
-  canvas = createCanvas(canvasCont.width, canvasCont.width);
+  canvas = createCanvas(canvasCont.width - 10, canvasCont.width - 10);
   canvas.parent("canvas-cont");
   canvas.id("canvas");
 
@@ -89,7 +89,11 @@ function loss(pred, labels) {
 function reset() {
   x_vals = [];
   y_vals = [];
-
+  let firstCoeff = coeffs[0];
+  coeffs = [];
+  coeffs[0] = firstCoeff;
+  coeffP.html("Order: " + coeffs.length);
+  coeffSlider.value(1);
   optimizer = tf.train.sgd(learningRate);
 }
 
