@@ -12,7 +12,7 @@ const INITIAL_LABEL = "I need data🤩";
 const CLASSNAME_BUTTON = "trainButton";
 const CAMERA_CONTAINER_ID = "input";
 const SNAPSHOTS_POSITION = 1;
-const TAKE_SNAP_TEXT = "Take a sample📸"
+const TAKE_SNAP_TEXT = "Take example📸"
 
 function setup() {
   input = select("#" + CAMERA_CONTAINER_ID);
@@ -28,7 +28,7 @@ function setup() {
 
   resultP.parent(CAMERA_CONTAINER_ID);
 
-  select("#colorClass").value('#'+(Math.random()*0xFFFFFF<<0).toString(16));
+  select("#colorClass").value('#' + (Math.random() * 0xFFFFFF << 0).toString(16));
 }
 
 function loadCanvas() {
@@ -116,7 +116,7 @@ function exist(name) {
 function onAddClass() {
   addClass(select("#inputClassName").value(), select("#colorClass").value());
   select("#inputClassName").value("");
-  select("#colorClass").value('#'+(Math.random()*0xFFFFFF<<0).toString(16));
+  select("#colorClass").value('#' + (Math.random() * 0xFFFFFF << 0).toString(16));
 }
 
 function capture() {
@@ -127,7 +127,10 @@ function capture() {
 
 function resizeCamera() {
   var aspectRatio = video.width / video.height;
-  resizeCanvas(input.elt.clientWidth, input.elt.clientWidth / aspectRatio);
+  if (input.elt.clientWidth > input.elt.clientHeight)
+    resizeCanvas(input.elt.clientHeight, input.elt.clientHeight / aspectRatio);
+  else
+    resizeCanvas(input.elt.clientWidth, input.elt.clientWidth / aspectRatio);
 }
 
 function windowResized() {
