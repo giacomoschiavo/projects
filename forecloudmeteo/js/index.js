@@ -1,12 +1,12 @@
 //stringa per richiesta GET data la città
-let urlCityName = "http://api.openweathermap.org/data/2.5/forecast?q=";
+let urlCityName = "https://api.openweathermap.org/data/2.5/forecast?q=";
 
 //stringa per richiesta GET data la posizione
-let urlCoord = "http://api.openweathermap.org/data/2.5/forecast?";
+let urlCoord = "https://api.openweathermap.org/data/2.5/forecast?";
 //mio id
 let id = "&appid=f9618f7331dc3735f2bbce10c9516ee0";
 
-//string per richiedere le weather icon 
+//string per richiedere le weather icon
 let icon = "https://openweathermap.org/img/w/";
 let png = ".png";
 
@@ -42,7 +42,7 @@ function handleInfo(data){
 }
 
 function updateInfo(res){
-	//div che contiene tutte le 
+	//div che contiene tutte le
 	let secondHalfBody = document.getElementById("second_half_body");
 
 	//rimuovi tutti elementi figli di secondHalfBody
@@ -167,7 +167,7 @@ function getInfoFromCoord(){
 
 		//ottieni latitudine e longitudine
 		let lat = Math.round(position.coords.latitude);
-		let lon = Math.round(position.coords.longitude); 
+		let lon = Math.round(position.coords.longitude);
 
 		//effettua richiesta (ES6 si fa sentire di nuovo :))
 		fetch(`${urlCoord}lat=${lat}&lon=${lon}${id}`).then(handleInfo).then(res=>{updateInfo(res)});
@@ -175,6 +175,5 @@ function getInfoFromCoord(){
 }
 
 function error(err){
-	
-}
 
+}
