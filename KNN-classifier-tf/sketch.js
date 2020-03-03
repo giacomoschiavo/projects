@@ -12,39 +12,29 @@ const INITIAL_LABEL = "I need data🤩";
 const CLASSNAME_BUTTON = "trainButton";
 const CAMERA_CONTAINER_ID = "input";
 const SNAPSHOTS_POSITION = 1;
+const TAKE_SNAP_TEXT = "Take a sample📸"
 
 function setup() {
-
-  // input = {
-  //   w: select("#" + CAMERA_CONTAINER_ID).width,
-  //   h: select("#" + CAMERA_CONTAINER_ID).width
-  // };
   input = select("#" + CAMERA_CONTAINER_ID);
 
   video = createCapture(VIDEO, loadCanvas);
-  // video.size(input.w, input.h);
   video.hide();
 
-  features = ml5.featureExtractor("MobileNet", video, modelReady);
+  features = ml5.featureExtractor("MobileNet", video);
   knn = ml5.KNNClassifier();
 
   resultP = createP(INITIAL_LABEL);
   resultP.id("result");
 
   resultP.parent(CAMERA_CONTAINER_ID);
+
+  select("#colorClass").value('#'+(Math.random()*0xFFFFFF<<0).toString(16));
 }
 
 function loadCanvas() {
-  // let newHeight = video.width;
-  // video.width = video.height;
-  // video.height = video.width;
   canvas = createCanvas(video.width, video.height);
   canvas.parent(CAMERA_CONTAINER_ID);
   resizeCamera();
-}
-
-function modelReady() {
-  console.log("Model is ready");
 }
 
 function goClassify() {
@@ -87,19 +77,22 @@ function addClass(name, color = "yellow") {
   loadDiv.class("confidence");
   loadDiv.style("background-color", color);
 
-  let trainButton = createButton("<span>TRAIN \"" + name + "\"</span>");
+  let trainButton = createButton("<div>TRAIN \"" + name + "\"</div>");
   trainButton.class(CLASSNAME_BUTTON);
   trainButton.style("background-color", color);
 
-  trainButton.elt.addEventListener("mousedown", (e) => {
-    let snapCont = e.path[2].childNodes[SNAPSHOTS_POSITION];
-    let img = capture();
-    snapCont.prepend(img);
+  trainButton.mousePressed(() => {
     knn.addExample(features.infer(video), name);
   });
 
-  let imgDiv = createDiv();
+  let imgDiv = createDiv(TAKE_SNAP_TEXT);
   imgDiv.class("snapshots");
+
+  imgDiv.mousePressed(() => {
+    imgDiv.html("");
+    imgDiv.child(capture());
+    imgDiv.mousePressed(() => null);
+  });
 
   classDiv.child(loadDiv);
   classDiv.child(imgDiv);
@@ -123,7 +116,7 @@ function exist(name) {
 function onAddClass() {
   addClass(select("#inputClassName").value(), select("#colorClass").value());
   select("#inputClassName").value("");
-  select("#colorClass").value("#ff0000");
+  select("#colorClass").value('#'+(Math.random()*0xFFFFFF<<0).toString(16));
 }
 
 function capture() {
@@ -134,7 +127,6 @@ function capture() {
 
 function resizeCamera() {
   var aspectRatio = video.width / video.height;
-  console.log(input.width / aspectRatio)
   resizeCanvas(input.elt.clientWidth, input.elt.clientWidth / aspectRatio);
 }
 
