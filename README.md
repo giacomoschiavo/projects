@@ -1,5 +1,5 @@
-# projects
-list of all my projects🛠
+# Projects
+List of all my projects🛠
 
 * [Forecloud Meteo☔](https://giacomoschiavo.github.io/projects/forecloudmeteo/)
 
