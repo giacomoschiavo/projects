@@ -9,3 +9,5 @@ List of all my projects🛠
 * [KNN Classifier👦](https://giacomoschiavo.github.io/projects/KNN-classifier-tf/)
 
 * [Polynomial Regression📈](https://giacomoschiavo.github.io/projects/polynomial-regression-tf/)
+
+* [Pi's Black Hole🌚](https://giacomoschiavo.github.io/projects/pi-black-hole/)
