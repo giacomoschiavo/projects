@@ -9,6 +9,8 @@ let prevx = 0,
 let x, y;
 let time = 0;
 
+let colored = false;
+
 
 function preload() {
   loadStrings("pi.txt", (result) => {
@@ -19,19 +21,19 @@ function preload() {
 
 
 function setup() {
-  if(window.innerWidth > window.innerHeight) {
+  colored = createCheckbox("Colors🌈", false);
+  if (window.innerWidth > window.innerHeight) {
     createCanvas(window.innerHeight, window.innerHeight);
   } else {
     createCanvas(window.innerWidth, window.innerWidth);
   }
   background(0);
-
   radius = width / 5 * 4;
-
   let piValue = pi[index++];
   prevx = cos(piValue + time) * radius / 2;
   prevy = sin(piValue + time) * radius / 2;
   drawCircle();
+
 }
 
 function drawCircle() {
@@ -51,12 +53,16 @@ function draw() {
 
   let piValue = pi[index++];
 
-  strokeWeight(0.05);
-
+  strokeWeight(0.1);
+  if(colored.checked()) {
+    colorMode(HSB, 100);
+    stroke(int(time * 100) % 100, 100, 100);
+  } else {
+    stroke(255);
+  }
   x = cos(piValue + time) * radius / 2;
   y = sin(piValue + time) * radius / 2;
   line(prevx, prevy, x, y);
-
   prevx = x;
   prevy = y;
 }

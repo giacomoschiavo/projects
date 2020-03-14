@@ -8,3 +8,12 @@ canvas {
   display: block;
   margin: auto;
 }
+
+input {
+  margin: 20px;
+}
+
+label {
+  color: white;
+  font-family: sans-serif;
+}
