@@ -1,20 +1,20 @@
 class GameManager{
 
 	constructor(){
-		//colori disponibili 
+		//colori disponibili
 		//TODO: aggiungi colori :D
 		this.availableColor = [
-			"red", 
-			"blue", 
+			"red",
+			"blue",
 			"lightblue",
-			"rgb(255, 255, 0)", 
-			"rgb(255, 70, 0)", 
-			"deeppink", 
-			"green", 
+			"rgb(255, 255, 0)",
+			"rgb(255, 70, 0)",
+			"deeppink",
+			"green",
 			"rgb(0, 255, 0)",
-			"blueviolet", 
-			"grey", 
-			"brown", 
+			"blueviolet",
+			"grey",
+			"brown",
 			"black",
 		];
 		//schermata menu
@@ -61,7 +61,7 @@ class GameManager{
 	//TODO: forse si può mettere a posto; guarda Audio properties
 	update(){
 		if(this.inMenuScreen){
-			this.menu.music.play();
+			// this.menu.music.play();
 			this.menu.update();
 		}else if(this.inChooseScreen){
 			this.winSound.load();
