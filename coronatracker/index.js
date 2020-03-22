@@ -12,43 +12,30 @@ const ACTIVECOUNTRY_DIV = "active-country";
 // });
 
 //aggiungi callback
-let defaultCountry = "IT";
+let defaultCountry = "Italy";
 
 let allCountry = {};
-
+let countriesData = {};
 
 let createCountries = (data) => {
   console.log("File caricato");
 
   let countries = data.match(/\b[A-Za-z_][^\s]*\b/g);
   for (let i = 0; i < countries.length; i += 2) {
-    allCountry[countries[i]] = countries[i + 1];
+    let name = countries[i].replace(/_/g, " ");
+    allCountry[name] = countries[i + 1];
   }
 
   console.log("Stati caricati");
 
   createCountriesSelect();
-  //
-  // for (let key in allCountry) {
-  //   getCountryData(allCountry[key], (data) => console.log(data.countrydata[0].total_deaths));
-  // }
-  //
-  getCountryData(defaultCountry, updateMainCountry);
+  getCountriesData(loadingFinished);
 }
 
-let getCountryData = (countryID, successFun) => {
-  $.ajax({
-    url: COUNTRY_TOTAL_URL + countryID,
-    dataType: 'json',
-    success: data => successFun(data)
-  });
-}
 
-let updateMainCountry = (data) => {
-  console.log("Dati su stato ricevuti");
-  $("#loading-div").css("animation", "fadeout 1s ease forwards");
+let updateMainCountry = (countryID) => {
 
-  let countrydata = data.countrydata[0];
+  let countrydata = countriesData[countryID].countrydata[0];
 
   let activeCases = countrydata.total_active_cases;
   let deaths = countrydata.total_deaths;
@@ -63,26 +50,15 @@ let updateMainCountry = (data) => {
   console.log("Dati aggiornati");
 }
 
-let setup = () => {
-  $.get('states.txt', createCountries);
-}
 
 let createCountriesSelect = () => {
-  // <label for="cars">Choose a car:</label>
-  // <select id="cars">
-  //   <option value="volvo">Volvo</option>
-  //   <option value="saab">Saab</option>
-  //   <option value="mercedes">Mercedes</option>
-  //   <option value="audi">Audi</option>
-  // </select>
-
   let divSelect = $("#" + ACTIVECOUNTRY_DIV);
 
   let select = document.createElement("select");
   select.id = "country-select";
   for (let key in allCountry) {
     let option = document.createElement("option");
-    if (allCountry[key] == defaultCountry) {
+    if (key == defaultCountry) {
       option.selected = true;
     }
     option.classList.add("country-option");
@@ -92,7 +68,34 @@ let createCountriesSelect = () => {
   }
 
   divSelect.append(select);
+}
+
+let getCountryData = (countryID, callback) => {
+  $.ajax({
+    url: COUNTRY_TOTAL_URL + countryID,
+    dataType: 'json',
+    success: data => callback(data, countryID)
+  });
+}
+
+let getCountriesData = (callback) => {
+  for (let key in allCountry) {
+    getCountryData(allCountry[key], (data) => countriesData[key] = data);
+  }
+
+  let timer;
+  timer = setInterval(() => {
+    if(Object.keys(allCountry).length == Object.keys(countriesData).length){
+      clearInterval(timer)
+      callback();
+    }
+  }, 100);
 
 }
 
-setup();
+let loadingFinished = () => {
+  $("#loading-div").css("animation", "fadeout 1s ease forwards");
+  updateMainCountry(defaultCountry);
+}
+
+$.get('states.txt', createCountries);

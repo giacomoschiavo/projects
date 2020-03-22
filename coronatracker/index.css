@@ -1,5 +1,8 @@
 :root {
-  --bg: #144F77;
+  --bg: #3D3B30;
+  --text: #E9EDDE;
+  --sec: #E7E247;
+  --special: #4D5061;
 }
 
 body, html {
@@ -51,7 +54,7 @@ body, html {
 #navbar {
   flex: 1;
   background-color: transparent;
-  color: white;
+  color: var(--sec);
   font-size: 3vw;
 }
 
@@ -70,7 +73,7 @@ body, html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
+  color: var(--sec);
 }
 
 #active-country {
@@ -86,8 +89,8 @@ body, html {
   border: 0;
   background-color: transparent;
   font-size: 2vw;
-  border-bottom: 2px solid white;
-  /* color: rgba(0, 0, 0, 0.6); */
+  border-bottom: 2px solid var(--sec);
+  color: var(--sec);
 }
 
 #active-cases {
@@ -98,7 +101,7 @@ body, html {
 
 #circle {
   border-radius: 50%;
-  border: 8px solid white;
+  border: 8px solid var(--sec);
   width: 20vw;
   height: 20vw;
   position: absolute;
