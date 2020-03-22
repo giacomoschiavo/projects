@@ -1,0 +1,22 @@
+
+
+@media (max-width: 800px) {
+
+  #circle {
+    width: 30vh;
+    height: 30vh;
+  }
+
+
+  #container {
+    flex-direction: column;
+  }
+
+  body, html {
+    overflow-y: auto;
+  }
+
+  #navbar{
+    display: block;
+  }
+}

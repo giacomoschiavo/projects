@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<link rel="stylesheet" type="text/css" href="indexResp.css">
+	<title>Coronavirus API</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://thevirustracker.com/embed.js"></script>
+	<script src="https://kit.fontawesome.com/51a7cab458.js" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Sarabun&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+	<!-- <div class="thevirustracker-widget" data-ccountryid="DE" data-base="ALLDATA"></div> -->
+	<nav id="navbar">
+		<h4><span>&#9776;</span><span>CoronaTracker<span></h4>
+	</nav>
+	<div id="loading-div">
+		<div id="loading"></div>
+	</div>
+	<main id="container">
+		<section id="main">
+			<div id="active-cases">
+				<div id="circle"></div>
+				<div id="circle-cont">
+					<h2 id="active-cases-text">XX.XXX</h2>
+					<sub>Active Cases</sub>
+				</div>
+			</div>
+			<div id="infos">
+				<div class="info" id="deaths">
+					<p class="info-text" id="deaths-text">XX.XXX</p>
+					<sub>Deaths</sub>
+				</div>
+				<div class="info" id="recovered">
+					<p class="info-text" id="recovered-text">XX.XXX</p>
+					<sub>Recovered</sub>
+				</div>
+				<div class="info" id="total-cases">
+					<p class="info-text" id="total-cases-text">XX.XXX</p>
+					<sub>Total Cases</sub>
+				</div>
+			</div>
+		</section>
+
+		<section id="sec">
+
+		</section>
+
+	</main>
+
+	<script src="index.js"></script>
+</body>
+
+</html>
