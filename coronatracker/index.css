@@ -11,6 +11,13 @@ body, html {
   font-family: "Sarabun";
 }
 
+/* .de {
+ background:url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDUgMyI+DQo8cGF0aCBkPSJtMCwwaDV2M2gtNXoiLz4NCjxwYXRoIGZpbGw9IiNkMDAiIGQ9Im0wLDFoNXYyaC01eiIvPg0KPHBhdGggZmlsbD0iI2ZmY2UwMCIgZD0ibTAsMmg1djFoLTV6Ii8+DQo8L3N2Zz4NCg==');
+ width: 100%;
+ height: 60%;
+ background-size: 100% 100%;
+} */
+
 #loading-div {
   position: fixed;
   z-index: 99;
@@ -32,6 +39,7 @@ body, html {
   animation: rotateLoop 2s linear infinite;
 }
 
+
 #container {
   max-height: inherit;
   min-height: inherit;
@@ -41,13 +49,10 @@ body, html {
 }
 
 #navbar {
-  display: none;
-  z-index: 99;
-  position: sticky;
-  top: 0;
+  flex: 1;
   background-color: transparent;
-  font-size: 7vw;
   color: white;
+  font-size: 3vw;
 }
 
 #navbar h4 {
@@ -60,7 +65,7 @@ body, html {
 }
 
 #main {
-  flex: 1;
+  flex: 2;
   background-color: var(--bg);
   display: flex;
   flex-direction: column;
@@ -68,8 +73,25 @@ body, html {
   color: white;
 }
 
+#active-country {
+  flex: 1;
+  max-width: inherit;
+  text-align: center;
+}
+
+#country-select {
+  width: 60%;
+  padding: 10px;
+  margin: 10px;
+  border: 0;
+  background-color: transparent;
+  font-size: 2vw;
+  border-bottom: 2px solid white;
+  /* color: rgba(0, 0, 0, 0.6); */
+}
+
 #active-cases {
-  flex: 5;
+  flex: 8;
   position: relative;
   text-align: center;
 }
@@ -77,8 +99,8 @@ body, html {
 #circle {
   border-radius: 50%;
   border: 8px solid white;
-  width: 30vw;
-  height: 30vw;
+  width: 20vw;
+  height: 20vw;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -91,7 +113,7 @@ body, html {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  font-size: 3vw;
+  font-size: 2vw;
 }
 
 #active-cases-text {
@@ -99,21 +121,25 @@ body, html {
 }
 
 #infos {
-  flex: 1;
+  flex: 3;
   display: flex;
 }
 
 .info {
+  flex: 1;
+  justify-content: center;
   text-align: center;
   margin: 10px 20px;
+  font-size: 1.3vw;
 }
 
 .info-text {
+  font-size: 2vw;
   margin: 5px;
 }
 
 #sec {
-  flex: 1;
+  flex: 3;
   overflow-y: scroll;
   background-color: white;
 }

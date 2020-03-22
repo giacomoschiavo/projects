@@ -1,22 +1,48 @@
 
 
 @media (max-width: 800px) {
-
-  #circle {
-    width: 30vh;
-    height: 30vh;
+  body, html {
+    overflow-y: auto;
   }
 
+  #circle {
+    width: 25vh;
+    height: 25vh;
+    border-width: 3px;
+  }
+
+  #circle-cont {
+    width: 20vh;
+    font-size: 3.4vh;
+  }
 
   #container {
     flex-direction: column;
   }
 
-  body, html {
-    overflow-y: auto;
+  #main {
+    flex: 4;
+  }
+
+  #country-select {
+    width: 80%;
+    margin: 0;
+    font-size: 3vh;
+  }
+  #infos {
+    flex: 1;
+  }
+  .info {
+    margin: 20px 10px;
+    font-size: 2vh;
+  }
+
+  .info-text {
+    font-size: 2.8vh;
   }
 
   #navbar{
-    display: block;
+    flex: 1;
+    font-size: 7vw;
   }
 }
