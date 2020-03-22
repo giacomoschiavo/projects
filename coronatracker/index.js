@@ -17,6 +17,11 @@ let defaultCountry = "Italy";
 let allCountry = {};
 let countriesData = {};
 
+
+let changedCountry = (index) => {
+  updateMainCountry(index.target.value)
+}
+
 let createCountries = (data) => {
   console.log("File caricato");
 
@@ -26,15 +31,12 @@ let createCountries = (data) => {
     allCountry[name] = countries[i + 1];
   }
 
-  console.log("Stati caricati");
-
   createCountriesSelect();
   getCountriesData(loadingFinished);
 }
 
 
 let updateMainCountry = (countryID) => {
-
   let countrydata = countriesData[countryID].countrydata[0];
 
   let activeCases = countrydata.total_active_cases;
@@ -46,8 +48,6 @@ let updateMainCountry = (countryID) => {
   $("#deaths-text").text(deaths);
   $("#recovered-text").text(recovered);
   $("#total-cases-text").text(totalCases);
-
-  console.log("Dati aggiornati");
 }
 
 
@@ -56,6 +56,7 @@ let createCountriesSelect = () => {
 
   let select = document.createElement("select");
   select.id = "country-select";
+  select.onchange = changedCountry;
   for (let key in allCountry) {
     let option = document.createElement("option");
     if (key == defaultCountry) {
@@ -89,13 +90,33 @@ let getCountriesData = (callback) => {
       clearInterval(timer)
       callback();
     }
-  }, 100);
-
+  }, 10);
 }
 
 let loadingFinished = () => {
   $("#loading-div").css("animation", "fadeout 1s ease forwards");
   updateMainCountry(defaultCountry);
+  sortCountries();
+}
+
+let createListElement = (country) => {
+  console.log(country)
+}
+
+let sortCountries = () => {
+  // [["Italy", 43242], ["Russia", 100]]
+  let nameCase = [];
+
+  for(let key in countriesData){
+    let cases = countriesData[key].countrydata[0].total_cases;
+    nameCase.push([key, cases]);
+  }
+
+  nameCase.sort((a, b) => b[1] - a[1])
+
+  for(let i = 0; i < nameCase.length; i++) {
+    createListElement(nameCase[i]);
+  }
 }
 
 $.get('states.txt', createCountries);
