@@ -55,6 +55,7 @@ let createCountriesSelect = () => {
   let divSelect = $("#" + ACTIVECOUNTRY_DIV);
 
   let select = document.createElement("select");
+  select.classList.add("centered");
   select.id = "country-select";
   select.onchange = changedCountry;
   for (let key in allCountry) {
@@ -75,7 +76,8 @@ let getCountryData = (countryID, callback) => {
   $.ajax({
     url: COUNTRY_TOTAL_URL + countryID,
     dataType: 'json',
-    success: data => callback(data, countryID)
+    success: data => callback(data, countryID),
+    error: () => console.error(countryID + "not reached")
   });
 }
 
@@ -86,7 +88,7 @@ let getCountriesData = (callback) => {
 
   let timer;
   timer = setInterval(() => {
-    if(Object.keys(allCountry).length == Object.keys(countriesData).length){
+    if (Object.keys(allCountry).length == Object.keys(countriesData).length) {
       clearInterval(timer)
       callback();
     }
@@ -94,28 +96,59 @@ let getCountriesData = (callback) => {
 }
 
 let loadingFinished = () => {
-  $("#loading-div").css("animation", "fadeout 1s ease forwards");
   updateMainCountry(defaultCountry);
   sortCountries();
 }
 
-let createListElement = (country) => {
-  console.log(country)
+$("#loading-div").css("animation", "fadeout 1s ease forwards");
+let createState = (country) => {
+
+  let stateDiv = document.createElement("div");
+  stateDiv.classList.add("state");
+
+  let nameP = document.createElement("p");
+  nameP.innerHTML = country;
+  nameP.classList.add("name-state")
+
+  let deaths = document.createElement("div");
+  deaths.classList.add("deaths", "tag");
+  let deathsP = document.createElement("p");
+  deathsP.innerHTML = countriesData[country].countrydata[0].total_deaths;
+  deaths.append(deathsP);
+
+  let recovered = document.createElement("div");
+  recovered.classList.add("recovered", "tag");
+  let recoveredP = document.createElement("p");
+  recoveredP.innerHTML = countriesData[country].countrydata[0].total_recovered;
+  recovered.append(recoveredP);
+
+  let total = document.createElement("div");
+  total.classList.add("total", "tag");
+  let totalP = document.createElement("p");
+  totalP.innerHTML = countriesData[country].countrydata[0].total_cases;
+  total.append(totalP);
+
+  stateDiv.append(nameP);
+  stateDiv.append(deaths);
+  stateDiv.append(recovered);
+  stateDiv.append(total);
+
+  $("#sec").append(stateDiv);
 }
 
 let sortCountries = () => {
   // [["Italy", 43242], ["Russia", 100]]
   let nameCase = [];
 
-  for(let key in countriesData){
+  for (let key in countriesData) {
     let cases = countriesData[key].countrydata[0].total_cases;
     nameCase.push([key, cases]);
   }
 
   nameCase.sort((a, b) => b[1] - a[1])
 
-  for(let i = 0; i < nameCase.length; i++) {
-    createListElement(nameCase[i]);
+  for (let i = 0; i < nameCase.length; i++) {
+    createState(nameCase[i][0]);
   }
 }
 

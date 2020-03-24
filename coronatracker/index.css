@@ -1,13 +1,12 @@
 :root {
-  --bg: #3D3B30;
-  --text: #E9EDDE;
-  --sec: #E7E247;
-  --special: #4D5061;
+  --bg: #E6ECED;
+  --text: #40798C;
+  --sec: #022b25;
+  --bg-sec: #70A9A1;
 }
 
 body, html {
-  max-height: 100vh;
-  min-height: 100vh;
+  height: 100%;
   overflow-y: hidden;
   background-color: var(--bg);
   margin: 0;
@@ -35,26 +34,24 @@ body, html {
   animation: rotateLoop 2s linear infinite;
 }
 
-
 #container {
-  max-height: inherit;
-  min-height: inherit;
+  max-height: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
 #navbar {
-  flex: 1;
   background-color: transparent;
-  color: var(--sec);
+  color: var(--text);
   font-size: 3vw;
 }
 
 #navbar h4 {
-  margin: auto;
   text-align: center;
-  padding: 20px 0;
+  padding: 5px;
+  margin: 0;
 }
 
 #navbar span {
@@ -63,41 +60,51 @@ body, html {
 
 #main {
   flex: 2;
-  background-color: var(--bg);
+  background-color: var(--bg-sec);
   display: flex;
   flex-direction: column;
   align-items: center;
   color: var(--sec);
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
 }
 
 #active-country {
-  flex: 1;
+  flex: 2;
   max-width: inherit;
   text-align: center;
+  position: relative;
 }
 
 #country-select {
-  width: 60%;
+  outline: none;
   padding: 10px;
   margin: 10px;
   border: 0;
-  background-color: transparent;
+  background-color: var(--bg);
+  border-radius: 10px;
   font-size: 2vw;
   border-bottom: 2px solid var(--sec);
   color: var(--sec);
 }
 
 #active-cases {
-  flex: 8;
+  flex: 5;
   position: relative;
   text-align: center;
 }
 
 #circle {
+  background-color: var(--bg);
   border-radius: 50%;
-  border: 8px solid var(--sec);
+  border: 8px solid var(--text);
   width: 20vw;
   height: 20vw;
+  box-shadow: 0 0 10px black;
+}
+
+.centered {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -106,11 +113,7 @@ body, html {
 
 #circle-cont {
   width: 20vw;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2vw;
+  font-size: 1.8em;
 }
 
 #active-cases-text {
@@ -118,27 +121,81 @@ body, html {
 }
 
 #infos {
-  flex: 3;
+  flex: 4;
   display: flex;
+  width: 95%;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .info {
-  flex: 1;
-  justify-content: center;
   text-align: center;
+  flex: 1;
+  padding: 20px 5px;
+  font-size: 1em;
   margin: 10px 20px;
-  font-size: 1.3vw;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  background-color: var(--bg);
+  color: var(--sec);
+  border: 3px solid var(--text);
 }
 
 .info-text {
-  font-size: 2vw;
-  margin: 5px;
+  font-size: 1.2em;
+  margin: 0;
+  font-weight: bold;
 }
 
 #sec {
+  /* display: none; */
   flex: 3;
   overflow-y: scroll;
-  background-color: white;
+  max-height: 100%;
+  background-color: var(--bg-sec);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.state {
+  width: 70%;
+  display: flex;
+  padding: 10px;
+  margin: 5px auto;
+  border-radius: 5px;
+  background-color: var(--bg);
+  color: var(--sec);
+
+}
+.state p {
+  margin: 0;
+}
+
+.name-state {
+  font-weight: bold;
+
+}
+
+.flag {
+  flex: 1;
+  background-repeat: no-repeat;
+}
+
+.deaths {
+  flex: 1;
+}
+
+.recovered {
+  flex: 1;
+}
+
+.total {
+  flex: 1;
+}
+
+.state * {
+  text-align: center;
 }
 
 @keyframes rotateLoop {
@@ -155,6 +212,7 @@ body, html {
   0% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
     display: none;

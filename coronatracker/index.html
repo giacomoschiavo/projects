@@ -5,6 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<link rel="stylesheet" type="text/css" href="indexResp.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="phoca-flags.css">
 	<title>Coronavirus Tracker</title>
 	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://thevirustracker.com/embed.js"></script>
@@ -18,18 +20,17 @@
 	<div id="loading-div">
 		<div id="loading"></div>
 	</div>
+	<nav id="navbar">
+		<h4>
+			CoronaTracker
+		</h4>
+	</nav>
 	<main id="container">
 		<section id="main">
-			<nav id="navbar">
-				<h4>
-					<!-- <span>&#9776;</span> -->
-					CoronaTracker
-				</h4>
-			</nav>
 			<div id="active-country"></div>
 			<div id="active-cases">
-				<div id="circle"></div>
-				<div id="circle-cont">
+				<div id="circle" class="centered"></div>
+				<div id="circle-cont" class="centered">
 					<h2 id="active-cases-text">XX.XXX</h2>
 					<sub>Active Cases</sub>
 				</div>
@@ -51,7 +52,6 @@
 		</section>
 
 		<section id="sec">
-
 		</section>
 
 	</main>

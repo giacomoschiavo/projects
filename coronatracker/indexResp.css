@@ -1,13 +1,12 @@
-
-
 @media (max-width: 800px) {
   body, html {
     overflow-y: auto;
+    max-height: none;
   }
 
   #circle {
-    width: 25vh;
-    height: 25vh;
+    width: 35vh;
+    height: 35vh;
     border-width: 3px;
   }
 
@@ -17,11 +16,11 @@
   }
 
   #container {
-    flex-direction: column;
+    display: block;
   }
 
   #main {
-    flex: 4;
+    min-height: 100vh;
   }
 
   #country-select {
@@ -29,20 +28,22 @@
     margin: 0;
     font-size: 3vh;
   }
+
   #infos {
     flex: 1;
   }
+
   .info {
     margin: 20px 10px;
-    font-size: 2vh;
+    font-size: 3vh;
   }
 
   .info-text {
-    font-size: 2.8vh;
+    font-size: 3.8vh;
   }
 
-  #navbar{
+  #navbar {
     flex: 1;
-    font-size: 7vw;
+    font-size: 6vh;
   }
 }
