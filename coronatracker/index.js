@@ -114,12 +114,13 @@ let createState = (country) => {
   divInfos.classList.add("info-state")
 
   let labels = ["deaths", "recovered", "total"];
+  let dataLabels  = ["total_deaths", "total_recovered", "total_cases"]
 
   for(let i = 0; i < labels.length; i++) {
     let div = document.createElement("div");
     div.classList.add(labels[i], "tag");
     let p = document.createElement("p");
-    p.innerHTML = countriesData[country].countrydata[0].total_deaths;
+    p.innerHTML = countriesData[country].countrydata[0][dataLabels[i]];
     let sub = document.createElement("p");
     sub.classList.add("sub-state")
     sub.innerHTML = labels[i].charAt(0).toUpperCase() + labels[i].slice(1);
