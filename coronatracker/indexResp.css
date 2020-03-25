@@ -24,9 +24,15 @@
   }
 
   #country-select {
-    width: 80%;
     margin: 0;
     font-size: 3vh;
+    width: 35vh;
+    color: var(--bg);
+  }
+
+  #country-select option {
+    color: var(--bg);
+    background-color: var(--border);
   }
 
   #infos {
@@ -35,15 +41,28 @@
 
   .info {
     margin: 20px 10px;
-    font-size: 3vh;
+    font-size: 2.3vh;
   }
 
   .info-text {
-    font-size: 3.8vh;
+    font-size: 3vh;
   }
 
   #navbar {
     flex: 1;
     font-size: 6vh;
   }
+
+  .state {
+    width: 85%;
+  }
+
+  .tag {
+    font-size: 2.5vh;
+  }
+
+  .sub-state {
+    font-size: 1.6vh;
+  }
+
 }

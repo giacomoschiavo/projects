@@ -98,9 +98,9 @@ let getCountriesData = (callback) => {
 let loadingFinished = () => {
   updateMainCountry(defaultCountry);
   sortCountries();
+  $("#loading-div").css("animation", "fadeout 1s ease forwards");
 }
 
-$("#loading-div").css("animation", "fadeout 1s ease forwards");
 let createState = (country) => {
 
   let stateDiv = document.createElement("div");
@@ -110,28 +110,26 @@ let createState = (country) => {
   nameP.innerHTML = country;
   nameP.classList.add("name-state")
 
-  let deaths = document.createElement("div");
-  deaths.classList.add("deaths", "tag");
-  let deathsP = document.createElement("p");
-  deathsP.innerHTML = countriesData[country].countrydata[0].total_deaths;
-  deaths.append(deathsP);
+  let divInfos = document.createElement("div");
+  divInfos.classList.add("info-state")
 
-  let recovered = document.createElement("div");
-  recovered.classList.add("recovered", "tag");
-  let recoveredP = document.createElement("p");
-  recoveredP.innerHTML = countriesData[country].countrydata[0].total_recovered;
-  recovered.append(recoveredP);
+  let labels = ["deaths", "recovered", "total"];
 
-  let total = document.createElement("div");
-  total.classList.add("total", "tag");
-  let totalP = document.createElement("p");
-  totalP.innerHTML = countriesData[country].countrydata[0].total_cases;
-  total.append(totalP);
+  for(let i = 0; i < labels.length; i++) {
+    let div = document.createElement("div");
+    div.classList.add(labels[i], "tag");
+    let p = document.createElement("p");
+    p.innerHTML = countriesData[country].countrydata[0].total_deaths;
+    let sub = document.createElement("p");
+    sub.classList.add("sub-state")
+    sub.innerHTML = labels[i].charAt(0).toUpperCase() + labels[i].slice(1);
+    div.append(p);
+    div.append(sub);
+    divInfos.append(div)
+  }
 
   stateDiv.append(nameP);
-  stateDiv.append(deaths);
-  stateDiv.append(recovered);
-  stateDiv.append(total);
+  stateDiv.append(divInfos);
 
   $("#sec").append(stateDiv);
 }
