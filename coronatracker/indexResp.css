@@ -1,7 +1,12 @@
+
 @media (max-width: 800px) {
   body, html {
     overflow-y: auto;
     max-height: none;
+  }
+
+  #loading-bar-cont {
+    width: 70%;
   }
 
   #circle {
@@ -65,4 +70,13 @@
     font-size: 1.6vh;
   }
 
+  #sec {
+    /* display: none; */
+    flex: 2;
+    overflow-y: scroll;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
 }

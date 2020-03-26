@@ -17,6 +17,8 @@ let defaultCountry = "Italy";
 let allCountry = {};
 let countriesData = {};
 
+let hasError = false;
+
 
 let changedCountry = (index) => {
   updateMainCountry(index.target.value)
@@ -77,7 +79,7 @@ let getCountryData = (countryID, callback) => {
     url: COUNTRY_TOTAL_URL + countryID,
     dataType: 'json',
     success: data => callback(data, countryID),
-    error: () => console.error(countryID + "not reached")
+    error: () => hasError = true
   });
 }
 
@@ -88,11 +90,18 @@ let getCountriesData = (callback) => {
 
   let timer;
   timer = setInterval(() => {
-    if (Object.keys(allCountry).length == Object.keys(countriesData).length) {
-      clearInterval(timer)
+    let ratio = Object.keys(countriesData).length / Object.keys(allCountry).length;
+    $("#loading-bar").css("width", ratio * 100 + "%")
+    if (ratio == 1) {
+      clearInterval(timer);
       callback();
     }
-  }, 10);
+
+    if(hasError) {
+      $("#loading-error").css("display", "block");
+      clearInterval(timer)
+    }
+  }, 100);
 }
 
 let loadingFinished = () => {

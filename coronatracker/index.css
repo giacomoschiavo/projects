@@ -2,6 +2,7 @@
   --white: #E6ECED;
   --border: #40798C;
   --bg: #021419;
+  --borderR: 10px;
 }
 
 body, html {
@@ -24,13 +25,43 @@ body, html {
 #loading {
   width: 10vw;
   height: 10vw;
-  position: absolute;
   border-radius: 50%;
   border-top: 2px solid var(--white);
   border-bottom: 2px solid var(--border);
+  position: absolute;
   left: 50%;
   top: 50%;
   animation: rotateLoop 2s linear infinite;
+}
+
+#loading-bar-cont {
+  position: absolute;
+  border-radius: 50px;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 2vh;
+  border: 2px solid var(--border);
+  background-color: transparent;
+}
+
+#loading-bar {
+  border-radius: 50px;
+  transition: 0.5s;
+  width: 1%;
+  border-radius: 50px;
+  height: inherit;
+  background: linear-gradient(45deg, var(--border), var(--bg));
+}
+
+#loading-error {
+  display: none;
+  color: var(--white);
+  text-align: center;
+  position: relative;
+  top: 10%;
+  font-size: 2em;
 }
 
 #container {
@@ -39,6 +70,8 @@ body, html {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  width: 90%;
+  margin: auto;
 }
 
 #navbar {
@@ -146,21 +179,21 @@ body, html {
 
 #sec {
   /* display: none; */
-  flex: 3;
+  flex: 2;
   overflow-y: scroll;
   max-height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 20px 0;
+  margin: 45px 10px;
 }
 
 .state {
-  width: 80%;
+  width: 50%;
   display: flex;
-  padding: 10px;
-  margin: 5px auto;
-  border-radius: 5px;
-  align-items: center;
+  margin: 20px auto;
+  align-items: stretch;
+  flex-direction: column;
+  box-shadow: 6px 0 10px rgba(0, 0, 0, 0.6);
 }
 
 .info-state p {
@@ -168,13 +201,14 @@ body, html {
 }
 
 .name-state {
-  flex: 7;
+  flex: 1;
   font-weight: bold;
+  font-size: 1.5em;
+  text-align: center;
   padding: 20px 15px;
-  border-radius: 10px 0 0 10px;
   background-color: var(--white);
+  border-radius: var(--borderR) var(--borderR) 0 0;
   margin: 0;
-  box-shadow: 6px 0 10px rgba(0, 0, 0, 0.6);
 }
 
 .sub-state {
@@ -182,10 +216,8 @@ body, html {
 }
 
 .info-state {
-  flex: 8;
+  flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .tag {
@@ -194,11 +226,12 @@ body, html {
   display: inline-block;
   text-align: center;
   color: var(--white);
-  padding: 7px 15px;
+  padding: 15px;
 }
 
 .tag:nth-child(1) {
   background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0 0 0 var(--borderR);
 }
 
 .tag:nth-child(2) {
@@ -207,7 +240,7 @@ body, html {
 
 .tag:nth-child(3) {
   background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 0 var(--borderR) 0;
 }
 
 
@@ -232,4 +265,24 @@ body, html {
     display: none;
     z-index: -99;
   }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--white);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border);
 }
