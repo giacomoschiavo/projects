@@ -11,5 +11,3 @@ List of all my projects🛠
 * [Polynomial Regression📈](https://giacomoschiavo.github.io/projects/polynomial-regression-tf/)
 
 * [Pi's Black Hole🌚](https://giacomoschiavo.github.io/projects/pi-black-hole/)
-
-* [Corona Tracker🦠](https://giacomoschiavo.github.io/projects/coronatracker/)
