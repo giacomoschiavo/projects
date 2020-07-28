@@ -44,7 +44,7 @@ class Grid {
   }
 
   drawGrid() {
-    background(125);
+    background(10);
     stroke(200, 200, 200, 100);
     strokeWeight(1);
     for (let i = this.squareDim; i < this.width; i += this.squareDim) {
@@ -78,7 +78,15 @@ class Grid {
     console.table(rows)
   }
 
-  stopAll() {
+  stop() {
     this.shapes.forEach(shape => shape.stop());
+  }
+
+  start() {
+    this.shapes.forEach(shape => shape.start());
+  }
+
+  collide() {
+
   }
 }

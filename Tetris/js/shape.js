@@ -8,6 +8,7 @@ class Shape {
 
   update() {
     if (this.stopped) return;
+    this.collide();
     this.pos.y++;
   }
 
@@ -19,16 +20,35 @@ class Shape {
     this.stopped = false;
   }
 
-  check(x, y) {
+  check(row, col) {
     let margin = this.cubes.length;
-    if (x >= this.pos.x + margin || y >= this.pos.y + margin || x < this.pos.x || y < this.pos.y) {
+    if (row >= this.pos.x + margin || col >= this.pos.y + margin || row < this.pos.x || col < this.pos.y) {
       return false;
     }
-    let xOffset = x - this.pos.x;
-    let yOffset = y - this.pos.y;
+    let xOffset = row - this.pos.x;
+    let yOffset = col - this.pos.y;
     if (this.cubes[yOffset][xOffset]) return true;
   }
 
+  rotate() {
+    let upLeft = this.cubes[2][0];
+    let upRight = this.cubes[0][0];
+    let downRight = this.cubes[0][2];
+    let downLeft = this.cubes[2][2];
+
+    let up = this.cubes[1][0];
+    let right = this.cubes[0][1];
+    let down = this.cubes[1][2];
+    let left = this.cubes[2][1];
+
+    let center = this.cubes[1][1];
+
+    this.cubes = [
+      [upLeft, up, upRight],
+      [left, center, right],
+      [downLeft, down, downRight]
+    ];
+  }
 }
 
 class LShape extends Shape {
@@ -41,52 +61,93 @@ class LShape extends Shape {
     super(new p5.Vector(x, y), cubes, "orange");
   }
 
-
 }
 
 class JShape extends Shape {
-  constructor() {
-    let cubes = [new p5.Vector(0, 1), new p5.Vector(1, 1), new p5.Vector(2, 1), new p5.Vector(2, 0)]
-    super(cubes, "blue");
+  constructor(x, y) {
+    let cubes = [
+      [0, 1, 0],
+      [0, 1, 0],
+      [1, 1, 0]
+    ];
+    super(new p5.Vector(x, y), cubes, "blue");
   }
 
-  rotate() {
-
-  }
 
 }
 
 class IShape extends Shape {
-  constructor() {
-    let cubes = [new p5.Vector(0, 0), new p5.Vector(0, 1), new p5.Vector(0, 2), new p5.Vector(0, 3)]
-    super(cubes, "lightblue");
+  constructor(x, y) {
+    let cubes = [
+      [0, 0, 1, 0],
+      [0, 0, 1, 0],
+      [0, 0, 1, 0],
+      [0, 0, 1, 0]
+    ];
+    super(new p5.Vector(x, y), cubes, "lightblue");
+  }
+
+  rotate() {
+    // 1. reverse
+    let reversed = this.cubes.reverse();
+    // 2. transpose
+    this.cubes = this.transpose(reversed);
+  }
+
+  transpose(matrix) {
+    let newMatrix = [];
+    for (let i = 0; i < matrix.length; i++) {
+      let row = [];
+      for (let j = 0; j < matrix[i].length; j++) {
+        row.push(this.cubes[j][i]);
+      }
+      newMatrix.push(row);
+    }
+    return newMatrix;
   }
 }
 
 class OShape extends Shape {
-  constructor() {
-    let cubes = [new p5.Vector(0, 0), new p5.Vector(0, 1), new p5.Vector(1, 1), new p5.Vector(1, 0)]
-    super(cubes, "yellow");
+  constructor(x, y) {
+    let cubes = [
+      [1, 1],
+      [1, 1],
+    ];
+    super(new p5.Vector(x, y), cubes, "yellow");
+  }
+
+  rotate() {
+    return;
   }
 }
 
 class TShape extends Shape {
-  constructor() {
-    let cubes = [new p5.Vector(0, 0), new p5.Vector(1, 0), new p5.Vector(2, 0), new p5.Vector(1, 1)]
-    super(cubes, "purple");
+  constructor(x, y) {
+    let cubes = [
+      [0, 1, 0],
+      [1, 1, 1],
+      [0, 0, 0]
+    ]; super(new p5.Vector(x, y), cubes, "purple");
   }
 }
 
 class SShape extends Shape {
-  constructor() {
-    let cubes = [new p5.Vector(0, 1), new p5.Vector(1, 1), new p5.Vector(1, 0), new p5.Vector(2, 0)]
-    super(cubes, "lightgreen");
+  constructor(x, y) {
+    let cubes = [
+      [0, 1, 1],
+      [1, 1, 0],
+      [0, 0, 0]
+    ];
+    super(new p5.Vector(x, y), cubes, "lightgreen");
   }
 }
 
 class ZShape extends Shape {
-  constructor() {
-    let cubes = [new p5.Vector(0, 0), new p5.Vector(1, 0), new p5.Vector(1, 1), new p5.Vector(2, 1)]
-    super(cubes, "red");
+  constructor(x, y) {
+    let cubes = [
+      [1, 1, 0],
+      [0, 1, 1],
+      [0, 0, 0]
+    ]; super(new p5.Vector(x, y), cubes, "red");
   }
 }
