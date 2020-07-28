@@ -15,6 +15,10 @@ class Grid {
   }
 
   addShape(shape) {
+    if (Array.isArray(shape)) {
+      shape.forEach(shap => this.addShape(shap));
+      return;
+    }
     this.shapes.push(shape);
     this.target = shape;
   }
@@ -36,7 +40,7 @@ class Grid {
   }
 
   update() {
-
+    this.shapes.forEach(shape => shape.update())
   }
 
   drawGrid() {
@@ -64,13 +68,17 @@ class Grid {
 
   printRows() {
     let rows = [];
-    for (let i = 0; i < this.nRows; i++) {
+    for (let j = 0; j < this.nRows; j++) {
       let row = [];
-      for (let j = 0; j < this.nCols; j++) {
-        row.push(this.check(i, j + this.nCols * i) ? 1 : 0);
+      for (let i = 0; i < this.nCols; i++) {
+        row.push(int(this.check(i, j)));
       }
       rows.push(row);
     }
     console.table(rows)
+  }
+
+  stopAll() {
+    this.shapes.forEach(shape => shape.stop());
   }
 }
