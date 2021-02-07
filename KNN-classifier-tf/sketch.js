@@ -12,7 +12,7 @@ const INITIAL_LABEL = "I need data🤩";
 const CLASSNAME_BUTTON = "trainButton";
 const CAMERA_CONTAINER_ID = "input";
 const SNAPSHOTS_POSITION = 1;
-const TAKE_SNAP_TEXT = "Take example📸"
+const TAKE_SNAP_TEXT = "Take example📸";
 
 function setup() {
   input = select("#" + CAMERA_CONTAINER_ID);
@@ -28,7 +28,9 @@ function setup() {
 
   resultP.parent(CAMERA_CONTAINER_ID);
 
-  select("#colorClass").value('#' + (Math.random() * 0xFFFFFF << 0).toString(16));
+  select("#colorClass").value(
+    "#" + ((Math.random() * 0xffffff) << 0).toString(16)
+  );
 }
 
 function loadCanvas() {
@@ -39,7 +41,7 @@ function loadCanvas() {
 
 function goClassify() {
   const logits = features.infer(video);
-  knn.classify(logits, function(error, result) {
+  knn.classify(logits, function (error, result) {
     if (error) {
       console.error(error);
     } else {
@@ -47,13 +49,13 @@ function goClassify() {
       updateBar(result);
       goClassify();
     }
-  })
+  });
 }
 
 function updateBar(result) {
   let results = result.confidencesByLabel;
   for (let item in results) {
-    select("#" + item).style("width", results[item].toFixed(3) * 100 + "%")
+    select("#" + item).style("width", results[item].toFixed(3) * 100 + "%");
   }
 }
 
@@ -77,7 +79,7 @@ function addClass(name, color = "yellow") {
   loadDiv.class("confidence");
   loadDiv.style("background-color", color);
 
-  let trainButton = createButton("<div>TRAIN \"" + name + "\"</div>");
+  let trainButton = createButton('<div>TRAIN "' + name + '"</div>');
   trainButton.class(CLASSNAME_BUTTON);
   trainButton.style("background-color", color);
 
@@ -102,9 +104,8 @@ function addClass(name, color = "yellow") {
 
   classes.push({
     label: name,
-    dom: classDiv
+    dom: classDiv,
   });
-
 }
 
 function exist(name) {
@@ -116,7 +117,9 @@ function exist(name) {
 function onAddClass() {
   addClass(select("#inputClassName").value(), select("#colorClass").value());
   select("#inputClassName").value("");
-  select("#colorClass").value('#' + (Math.random() * 0xFFFFFF << 0).toString(16));
+  select("#colorClass").value(
+    "#" + ((Math.random() * 0xffffff) << 0).toString(16)
+  );
 }
 
 function capture() {
@@ -129,8 +132,7 @@ function resizeCamera() {
   var aspectRatio = video.width / video.height;
   if (input.elt.clientWidth > input.elt.clientHeight)
     resizeCanvas(input.elt.clientHeight, input.elt.clientHeight / aspectRatio);
-  else
-    resizeCanvas(input.elt.clientWidth, input.elt.clientWidth / aspectRatio);
+  else resizeCanvas(input.elt.clientWidth, input.elt.clientWidth / aspectRatio);
 }
 
 function windowResized() {
